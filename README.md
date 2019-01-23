@@ -7,11 +7,12 @@ Packager: Yarn 1.13.0
 
 ## Usage
 ```
+# Install dependencies
 yarn install
 # Development
-yarn develop
+yarn dev
 # Production
-yarn prod
+yarn production
 # Optional: Generate fake data (pretty long task)
 yarn generateData
 ```
