@@ -1,0 +1,5 @@
+{
+  "nodemonConfig": {
+    "ignore": ["client/*"]
+  }
+}

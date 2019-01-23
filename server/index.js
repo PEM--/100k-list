@@ -1,0 +1,41 @@
+const process = require('process')
+
+const express = require('express')
+const { ApolloServer, gql } = require('apollo-server-express')
+
+const { PORT } = require('./constants')
+
+
+// Handle uncaught promise rejections & exceptions
+process.on('unhandledRejection', (reason, p) => { throw reason })
+process.on('uncaughtException', (error) => {
+  console.error('Exception received:', error.toString())
+  process.exitCode = 1
+})
+
+// Fast Apollo setup
+const typeDefs = gql`
+  type Item {
+    id: ID!
+    civility: String!
+    country: String!
+    firstName: String!
+    lastName: String!
+  }
+  type Query {
+    items: [Item]
+  }
+`
+const resolvers = {
+  Query: {
+    items: () => []
+  }
+}
+const server = new ApolloServer({ typeDefs, resolvers })
+
+// Express setup
+const app = express()
+server.applyMiddleware({ app })
+app.listen({ port: PORT }, () => {
+  console.log(`Server listening on http://localhost:${PORT}${server.graphqlPath}`)
+})

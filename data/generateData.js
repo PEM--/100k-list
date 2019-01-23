@@ -6,6 +6,7 @@ const NB_ITEMS = 1e5
 
 console.log('Generating fake data...')
 const fakeData = Array.from(Array(NB_ITEMS).keys(), () => ({
+  id: faker.random.uuid(),
   civility: faker.name.prefix(),
   country: faker.address.country(),
   firstName: faker.name.firstName(),

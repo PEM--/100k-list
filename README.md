@@ -10,8 +10,9 @@ Packager: Yarn 1.13.0
 # Install dependencies
 yarn install
 # Development
-yarn dev
-# Production
+yarn dev.client
+yarn dev.server
+# Production (build client)
 yarn production
 # Optional: Generate fake data (pretty long task)
 yarn generateData
@@ -21,5 +22,5 @@ yarn generateData
 Please, refer to their installation process depending on your operating system.
 
 ## Main packages used
-* Production: Express, React & React-DOM, Styled-components
+* Production: Express, Apollo, React & React-DOM, Styled-components
 * Development: Faker, Webpack
