@@ -12,14 +12,11 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-export interface MainProps { compiler: string; framework: string; }
-
-export class Main extends React.Component<MainProps, {}> {
+export class Main extends React.Component {
   render() {
     return (<ApolloProvider client={client}>
-        <GlobalStyle />
-        <h1>Test component: {this.props.compiler}, {this.props.framework}</h1>
-        <List />
-      </ApolloProvider>);
+      <GlobalStyle />
+      <List />
+    </ApolloProvider>);
   }
 }

@@ -95,19 +95,46 @@
 
 "use strict";
 
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+            t[p[i]] = s[p[i]];
+    return t;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 const graphql_tag_1 = __webpack_require__(/*! graphql-tag */ "./node_modules/graphql-tag/src/index.js");
 const react_apollo_1 = __webpack_require__(/*! react-apollo */ "./node_modules/react-apollo/react-apollo.browser.umd.js");
+const Item_1 = __webpack_require__(/*! ../ui/Item */ "./client/ui/Item.tsx");
 const Loading_1 = __webpack_require__(/*! ../ui/Loading */ "./client/ui/Loading.tsx");
+// Item.defaultProps = {
+//   columnSizes: {
+//     civility: 50,
+//     country: 100,
+//     firstName: 100,
+//     lastName: 100
+//   }
+// };
 class List extends React.Component {
     render() {
-        console.log('this.props', this.props);
-        const { data } = this.props;
+        const { data, items } = this.props;
         if (data.loading)
             return React.createElement(Loading_1.default, null, "Loading...");
-        return (React.createElement("ul", null,
-            React.createElement("li", null, "Hello world")));
+        return (React.createElement("table", null,
+            React.createElement("thead", null,
+                React.createElement("tr", null,
+                    React.createElement("td", null, "Civility"),
+                    React.createElement("td", null, "First name"),
+                    React.createElement("td", null, "Last name"),
+                    React.createElement("td", null, "Country"))),
+            React.createElement("tbody", null, data.items
+                .map((_a) => {
+                var { id } = _a, others = __rest(_a, ["id"]);
+                return React.createElement(Item_1.default, Object.assign({ key: id }, others));
+            }))));
     }
 }
 exports.default = react_apollo_1.graphql(graphql_tag_1.default `
@@ -146,11 +173,6 @@ class Main extends React.Component {
     render() {
         return (React.createElement(react_apollo_1.ApolloProvider, { client: client },
             React.createElement(GlobalStyle_1.GlobalStyle, null),
-            React.createElement("h1", null,
-                "Test component: ",
-                this.props.compiler,
-                ", ",
-                this.props.framework),
             React.createElement(List_1.default, null)));
     }
 }
@@ -172,7 +194,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 const ReactDOM = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 const Main_1 = __webpack_require__(/*! ./containers/Main */ "./client/containers/Main.tsx");
-ReactDOM.render(React.createElement(Main_1.Main, { compiler: "TypeScript", framework: "React" }), document.getElementById("root"));
+ReactDOM.render(React.createElement(Main_1.Main, null), document.getElementById("root"));
 
 
 /***/ }),
@@ -339,6 +361,27 @@ exports.GlobalStyle = styled_components_1.createGlobalStyle `
     display: none;
   }
 `;
+
+
+/***/ }),
+
+/***/ "./client/ui/Item.tsx":
+/*!****************************!*\
+  !*** ./client/ui/Item.tsx ***!
+  \****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+const Item = ({ civility, country, firstName, lastName }) => (React.createElement("tr", null,
+    React.createElement("td", null, civility),
+    React.createElement("td", null, firstName),
+    React.createElement("td", null, lastName),
+    React.createElement("td", null, country)));
+exports.default = Item;
 
 
 /***/ }),
@@ -3901,7 +3944,7 @@ var ApolloError = (function (_super) {
 /*!*********************************************!*\
   !*** ./node_modules/apollo-client/index.js ***!
   \*********************************************/
-/*! exports provided: ObservableQuery, NetworkStatus, FetchType, isApolloError, ApolloError, ApolloClient, default */
+/*! exports provided: ObservableQuery, NetworkStatus, isApolloError, ApolloError, ApolloClient, default, FetchType */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4665,7 +4708,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!***********************************************!*\
   !*** ./node_modules/apollo-link/lib/index.js ***!
   \***********************************************/
-/*! exports provided: empty, from, split, concat, ApolloLink, execute, createOperation, makePromise, toPromise, fromPromise, fromError, Observable */
+/*! exports provided: createOperation, makePromise, toPromise, fromPromise, fromError, Observable, empty, from, split, concat, ApolloLink, execute */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -44755,7 +44798,7 @@ module.exports = function(module) {
 /*!*****************************************************!*\
   !*** ./node_modules/zen-observable-ts/lib/index.js ***!
   \*****************************************************/
-/*! exports provided: Observable, default */
+/*! exports provided: default, Observable */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

@@ -3,8 +3,9 @@ const process = require('process')
 const express = require('express')
 const { ApolloServer, gql } = require('apollo-server-express')
 
-const { PORT } = require('./constants')
+const fakeData = require('../data/fakeData.json')
 
+const { PORT } = require('./constants')
 
 // Handle uncaught promise rejections & exceptions
 process.on('unhandledRejection', (reason, p) => { throw reason })
@@ -28,7 +29,7 @@ const typeDefs = gql`
 `
 const resolvers = {
   Query: {
-    items: () => []
+    items: () => fakeData
   }
 }
 const server = new ApolloServer({ typeDefs, resolvers })

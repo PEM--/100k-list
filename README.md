@@ -18,6 +18,8 @@ yarn production
 yarn generateData
 ```
 
+> Default port is configured on `4000` and can be overriden using a `PORT` environment variable. 
+
 ⚠️ Node & Yarn must be available on your computer for this script to work.
 Please, refer to their installation process depending on your operating system.
 
@@ -35,7 +37,7 @@ Please, refer to their installation process depending on your operating system.
   > Latest release: 16.7.0
 
 ### Requirements
-* [ ] Handles 100,000s of rows.
+* [x] Handles 100,000s of rows.
 * [ ] Auto-sizes columns based on cell content.
 * [x] Generic, re-usable API that abstracts away the underlying implementation.
   > Achieved via Apollo
