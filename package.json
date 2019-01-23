@@ -1,0 +1,9 @@
+{
+  "name": "100k-list",
+  "version": "1.0.0",
+  "description": "Sample project that displays a list of 100k items",
+  "main": "src/index.js",
+  "repository": "https://github.com/PEM--/100k-list.git",
+  "author": "PEM-- <pemarchandet@gmail.com>",
+  "license": "MIT"
+}
