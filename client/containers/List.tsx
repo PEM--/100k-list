@@ -4,6 +4,7 @@ import { graphql } from "react-apollo"
 
 import Item from '../ui/Item'
 import Loading from '../ui/Loading'
+import Table from '../ui/Table'
 
 // Item.defaultProps = {
 //   columnSizes: {
@@ -14,25 +15,18 @@ import Loading from '../ui/Loading'
 //   }
 // };
 
+type Props = {
+  data: any
+}
 
-class List extends React.Component {
+class List extends React.Component<Props, {}> {
   render() {
-    const { data, items } = this.props
+    const { data } = this.props
     if (data.loading) return <Loading>Loading data over HTTP...</Loading>
-    return (<table>
-      <thead>
-        <tr>
-          <td>Civility</td>
-          <td>First name</td>
-          <td>Last name</td>
-          <td>Country</td>
-        </tr>
-      </thead>
-      <tbody>
-        {data.items
-          .map(({ id, ...others}) => <Item key={id} {...others} />)}
-      </tbody>
-    </table>)
+    return (<Table>
+      {data.items
+        .map(item => <Item key={item.id} {...item} />)}
+    </Table>)
   }
 }
 export default graphql(gql`

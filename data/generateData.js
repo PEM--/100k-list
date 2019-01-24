@@ -2,7 +2,7 @@ const fs = require('fs')
 
 const faker = require('faker')
 
-const NB_ITEMS = 1e2 // 1e5
+const NB_ITEMS = 1e5
 
 console.log('Generating fake data...')
 const fakeData = Array.from(Array(NB_ITEMS).keys(), () => ({

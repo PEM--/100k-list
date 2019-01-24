@@ -17,7 +17,7 @@ const typeDefs = gql`
 `
 const resolvers = {
   Query: {
-    items: () => fakeData
+    items: () => fakeData.slice(0, 100)
   }
 }
 const server = new ApolloServer({ typeDefs, resolvers })
