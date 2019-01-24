@@ -7,6 +7,8 @@ const fakeData = require('../data/fakeData.json')
 
 const { PORT } = require('./constants')
 
+const isDevelpoment = process.env.NODE_ENV !== 'production'
+
 // Handle uncaught promise rejections & exceptions
 process.on('unhandledRejection', (reason, p) => { throw reason })
 process.on('uncaughtException', (error) => {
@@ -38,6 +40,10 @@ const server = new ApolloServer({ typeDefs, resolvers })
 const app = express()
 app.use(express.static('public'))
 server.applyMiddleware({ app })
+if (isDevelpoment) {
+  const webpackMw = require('./webpackMw')
+  webpackMw(app)
+}
 app.listen({ port: PORT }, () => {
   console.log(`Server listening on http://localhost:${PORT}${server.graphqlPath}`)
 })

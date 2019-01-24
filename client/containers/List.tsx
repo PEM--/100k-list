@@ -18,7 +18,7 @@ import Loading from '../ui/Loading'
 class List extends React.Component {
   render() {
     const { data, items } = this.props
-    if (data.loading) return <Loading>Loading...</Loading>
+    if (data.loading) return <Loading>Loading data over HTTP...</Loading>
     return (<table>
       <thead>
         <tr>

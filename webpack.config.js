@@ -1,17 +1,34 @@
+const webpack = require('webpack')
+const path = require('path')
+const isDevelpoment = process.env.NODE_ENV !== 'production'
+
+const srcEntryPoint = path.resolve(__dirname, 'client/index.tsx')
+
 module.exports = {
-  entry: "./client/index.tsx",
-  output: {
-    filename: "bundle.js",
-    path: __dirname + "/public"
-  },
-  devtool: "source-map",
+  mode: isDevelpoment ? 'development' : 'production',
+  devtool: isDevelpoment ? 'inline-source-map' : 'none',
+  entry: isDevelpoment
+    ? ['webpack-hot-middleware/client', srcEntryPoint]
+    : srcEntryPoint,
+  devtool: 'source-map',
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".json"]
+    extensions: ['.ts', '.tsx', '.js']
   },
   module: {
     rules: [
-      { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
-      { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
+      { test: /\.tsx?$/, loader: 'awesome-typescript-loader' },
+      { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' }
     ]
+  },
+  plugins: isDevelpoment
+    ? [
+      new webpack.NamedModulesPlugin(),
+      new webpack.HotModuleReplacementPlugin()
+    ]
+    : [],
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'public'),
+    publicPath: '/'
   }
 };
