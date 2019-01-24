@@ -10,9 +10,8 @@ Packager: Yarn 1.13.0
 # Install dependencies
 yarn install
 # Development
-yarn dev.client
-yarn dev.server
-# Production (build client)
+yarn dev
+# Production (build client as express is production ready)
 yarn production
 # Optional: Generate fake data (pretty long task)
 yarn generateData
