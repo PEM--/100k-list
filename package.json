@@ -37,7 +37,7 @@
     "webpack-hot-middleware": "^2.24.3"
   },
   "scripts": {
-    "dev": "NODE_ENV='development' webpack --watch",
+    "dev": "NODE_ENV='development' nodemon server/index.js",
     "production": "NODE_ENV='production' webpack",
     "generateData": "node data/generateData.js"
   }
