@@ -37,13 +37,13 @@ Please, refer to their installation process depending on your operating system.
 
 ### Requirements
 * [x] Handles 100,000s of rows.
-* [ ] Auto-sizes columns based on cell content.
+* [x] Auto-sizes columns based on cell content.
 * [x] Generic, re-usable API that abstracts away the underlying implementation.
   > Achieved via Apollo
-* [ ] Light backend that serves up the data.
+* [x] Light backend that serves up the data.
   > Achieved via Express & Apollo
 * [ ] Allow sorting by clicking on columns.
-* [ ] No 3rd party data grid library.
+* [x] No 3rd party data grid library.
 
 ## Stretch
 * [ ] Resizable / draggable columns.

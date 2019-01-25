@@ -20,10 +20,13 @@ type Props = {
 }
 
 class List extends React.Component<Props, {}> {
+  handleHeaderClick = (headerName: string): void => {
+    console.log('headerName', headerName)
+  }
   render() {
     const { data } = this.props
     if (data.loading) return <Loading>Loading data over HTTP...</Loading>
-    return (<Table>
+    return (<Table onHeaderClick={this.handleHeaderClick}>
       {data.items
         .map(item => <Item key={item.id} {...item} />)}
     </Table>)

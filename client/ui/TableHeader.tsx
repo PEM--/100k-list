@@ -5,14 +5,20 @@ const TheadTag = styled.thead`
   background: lightgray;
 `;
 
-const TableHeader = () => (
-  <TheadTag>
-    <tr>
-      <th>Civility</th>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Country</th>
-    </tr>
-  </TheadTag>
-);
-export default TableHeader;
+interface TableHeaderProps {
+  onHeaderClick: () => void
+}
+
+export default class TableHeader extends React.Component<TableHeaderProps, {}> {
+  render () {
+    const { onHeaderClick } = this.props
+    return (<TheadTag>
+      <tr>
+        <th><button onClick={onHeaderClick}>Civility</button></th>
+        <th><button onClick={onHeaderClick}>First name</button></th>
+        <th><button onClick={onHeaderClick}>Last name</button></th>
+        <th><button onClick={onHeaderClick}>Country</button></th>
+      </tr>
+    </TheadTag>);
+  }
+}

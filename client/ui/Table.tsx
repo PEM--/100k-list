@@ -8,15 +8,13 @@ const TableTag = styled.table`
   width: 100%;
   th, td {
     padding: .25em;
-    &:not(:first-of-type) {
-      border-left: 1px solid gray;
-    }
+    &:not(:first-of-type) { border-left: 1px solid gray; }
   }
 `;
 
-const Table = ({ children }) => (
+const Table = ({ children, onHeaderClick }) => (
   <TableTag>
-    <TableHeader />
+    <TableHeader onHeaderClick={onHeaderClick} />
     <tbody>
       {children}
     </tbody>
