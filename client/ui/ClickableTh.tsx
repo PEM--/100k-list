@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as _ from "lodash";
 import classNames from "classnames";
 import styled from "styled-components";
 import { position, size } from "polished";
@@ -10,20 +11,24 @@ const ThTag = styled.th`
     background: transparent;
     border: 0;
     cursor: pointer;
+    color: gray;
     display: block;
+    font-weight: bold;
     outline: 0;
     position: relative;
-    &:active {
-      transform: translateY(1px);
-      transition: transform .3s ease-in-out;
-    }
+    transition:
+      color .3s ease-in-out,
+      transform .3s ease-in-out;
+    &:active { transform: translateY(1px); }
+    &:hover { color: black; }
     .arrow {
-      ${position('absolute', 1, 1, null, null)}
-      ${size('20px')}
+      ${position('absolute', 4, 0, null, null)}
+      ${size('13px')}
+      border: 1px solid gray;
       border-radius: 50%;
-      background: white;
       color: gray;
       display: block;
+      font-size: .6em;
       opacity: 0;
       pointer-events: none;
       transition:
@@ -41,20 +46,24 @@ interface ClickableThProps {
   direction: string,
   onHeaderClick: (type: string) => void,
   order: string,
-  text: string,
-  type: string
+  text: string
 }
 
 export default class ClickableTh extends React.Component<ClickableThProps, {}> {
-  handleClick = () => this.props.onHeaderClick(this.props.type)
+  type = null
+  constructor (props) {
+    super(props);
+    this.type = _.camelCase(props.text);
+  }
+  handleClick = () => this.props.onHeaderClick(this.type)
   render () {
-    const { direction, order, text, type } = this.props
+    const { direction, order, text } = this.props;
     return (<ThTag>
       <button onClick={ this.handleClick }>
         {text}
         <span
           className={ classNames('arrow', {
-            active: order === type,
+            active: order === this.type,
             down: direction === 'desc'
           })}
         >⬆︎</span>

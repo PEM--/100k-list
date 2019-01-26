@@ -1,6 +1,7 @@
 import * as React from "react";
 import gql from "graphql-tag";
 import { graphql } from "react-apollo"
+import * as _ from "lodash"
 
 import Item from '../ui/Item'
 import Loading from '../ui/Loading'
@@ -25,14 +26,20 @@ class List extends React.Component<Props, {}> {
       newState.order = headerName;
       newState.direction = "asc";
     }
-    console.log('newState', newState)
     this.setState(newState);
+  }
+  getOrderedItems = () => {
+    const { data: { items } } = this.props
+    if (!this.state.order) return items;
+    const orderedItems = _.sortBy(items, this.state.order);
+    if (this.state.direction === 'asc') return orderedItems;
+    return orderedItems.reverse();
   }
   render() {
     const { data } = this.props
     if (data.loading) return <Loading>Loading data over HTTP...</Loading>
     return (<Table onHeaderClick={this.handleHeaderClick} {...this.state}>
-      {data.items.map(item => <Item key={item.id} {...item} />)}
+      {this.getOrderedItems().map(item => <Item key={item.id} {...item} />)}
     </Table>)
   }
 }

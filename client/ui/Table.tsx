@@ -14,9 +14,6 @@ const TableTag = styled.table`
 
 const Table = ({ children, ...otherProps}) => (<TableTag>
   <TableHeader {...otherProps} />
-  <tbody>
-    {children}
-  </tbody>
+  <tbody>{children}</tbody>
 </TableTag>)
-
 export default Table;

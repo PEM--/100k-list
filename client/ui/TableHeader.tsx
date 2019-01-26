@@ -9,10 +9,10 @@ const TheadTag = styled.thead`
 
 const TableHeader = (props) => (<TheadTag>
   <tr>
-    <ClickableTh text="Civility" type="civility" { ...props } />
-    <ClickableTh text="First Name" type="fisrtName" { ...props } />
-    <ClickableTh text="Last Name" type="lastName" { ...props } />
-    <ClickableTh text="Country" type="country" { ...props } />
+    <ClickableTh text="Civility" { ...props } />
+    <ClickableTh text="First Name" { ...props } />
+    <ClickableTh text="Last Name" { ...props } />
+    <ClickableTh text="Country" { ...props } />
   </tr>
 </TheadTag>);
 export default TableHeader;

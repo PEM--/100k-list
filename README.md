@@ -42,7 +42,7 @@ Please, refer to their installation process depending on your operating system.
   > Achieved via Apollo
 * [x] Light backend that serves up the data.
   > Achieved via Express & Apollo
-* [ ] Allow sorting by clicking on columns.
+* [x] Allow sorting by clicking on columns.
 * [x] No 3rd party data grid library.
 
 ## Stretch
