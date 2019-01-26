@@ -12,13 +12,11 @@ const TableTag = styled.table`
   }
 `;
 
-const Table = ({ children, onHeaderClick }) => (
-  <TableTag>
-    <TableHeader onHeaderClick={onHeaderClick} />
-    <tbody>
-      {children}
-    </tbody>
-  </TableTag>
-)
+const Table = ({ children, ...otherProps}) => (<TableTag>
+  <TableHeader {...otherProps} />
+  <tbody>
+    {children}
+  </tbody>
+</TableTag>)
 
 export default Table;

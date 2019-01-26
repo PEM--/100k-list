@@ -6,29 +6,33 @@ import Item from '../ui/Item'
 import Loading from '../ui/Loading'
 import Table from '../ui/Table'
 
-// Item.defaultProps = {
-//   columnSizes: {
-//     civility: 50,
-//     country: 100,
-//     firstName: 100,
-//     lastName: 100
-//   }
-// };
-
-type Props = {
+interface Props {
   data: any
 }
 
 class List extends React.Component<Props, {}> {
+  state = { order: null, direction: "asc" }
   handleHeaderClick = (headerName: string): void => {
-    console.log('headerName', headerName)
+    const newState = { ...this.state };
+    // Set new sort order
+    if (!this.state.order) {
+      newState.order = headerName;
+    // Inverse current order
+    } else if (this.state.order === headerName) {
+      newState.direction = this.state.direction === "asc" ? "desc" : "asc";
+    // Replacing sort order
+    } else {
+      newState.order = headerName;
+      newState.direction = "asc";
+    }
+    console.log('newState', newState)
+    this.setState(newState);
   }
   render() {
     const { data } = this.props
     if (data.loading) return <Loading>Loading data over HTTP...</Loading>
-    return (<Table onHeaderClick={this.handleHeaderClick}>
-      {data.items
-        .map(item => <Item key={item.id} {...item} />)}
+    return (<Table onHeaderClick={this.handleHeaderClick} {...this.state}>
+      {data.items.map(item => <Item key={item.id} {...item} />)}
     </Table>)
   }
 }
