@@ -36,7 +36,8 @@ Please, refer to their installation process depending on your operating system.
   > Latest release: 16.7.0
 
 ### Requirements
-* [x] Handles 100,000s of rows.
+* [/] Handles 100,000s of rows.
+  > Not full handled, a virtualization must be added as well as a worker for sorting in order to avoid main thread lock. In this repo, I've sliced the list to 1k items.
 * [x] Auto-sizes columns based on cell content.
 * [x] Generic, re-usable API that abstracts away the underlying implementation.
   > Achieved via Apollo
